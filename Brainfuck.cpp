@@ -85,14 +85,14 @@ void Brainfuck::loopBegin() {
     return;
   }
   // Save my poor fingers.
-  const auto attemptIncrInstructionPointer = [this]() {
+  const auto guardIncrInstructionPointer = [this]() {
     if (++instructionPointer > instructions.size())
       throw BrainfuckError("incremented instruction pointer out of bounds "
                            "while looking for loop end");
   };
   // We're trying to find the corresponding end loop command.
   // But we can have nested loops so make sure we're aware of that.
-  attemptIncrInstructionPointer();
+  guardIncrInstructionPointer();
   int stackSize = 0;
   char currentInstruction;
   while (currentInstruction = instructions.at(instructionPointer),
@@ -102,7 +102,7 @@ void Brainfuck::loopBegin() {
       ++stackSize;
     if (currentInstruction == ']')
       --stackSize;
-    attemptIncrInstructionPointer();
+    guardIncrInstructionPointer();
   }
 }
 

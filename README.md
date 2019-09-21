@@ -5,7 +5,7 @@ This is a CMake project so it can be built with GNU Make or whatever your prefer
 ```
 cmake . && make
 ```
-And the interpreter can be invoked with a path to a Brainfuck source file.
+The interpreter can be invoked with a path to a Brainfuck source file.
 ```
 ./brainfuck <source_file>
 ```
