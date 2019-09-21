@@ -49,12 +49,12 @@ void Brainfuck::execInstruction(char instruction) {
 
 void Brainfuck::incrPointer() {
   if (++dataPointer >= data.size())
-    throw BrainfuckError("incremented data pointer out of bounds");
+    throw BrainfuckError("Incremented data pointer out of bounds");
 }
 
 void Brainfuck::decrPointer() {
   if (dataPointer-- == 0)
-    throw BrainfuckError("decremented data pointer out of bounds");
+    throw BrainfuckError("Decremented data pointer out of bounds");
 }
 
 void Brainfuck::incrData() {
@@ -87,7 +87,7 @@ void Brainfuck::loopBegin() {
   // Save my poor fingers.
   const auto guardIncrInstructionPointer = [this]() {
     if (++instructionPointer > instructions.size())
-      throw BrainfuckError("incremented instruction pointer out of bounds "
+      throw BrainfuckError("Incremented instruction pointer out of bounds "
                            "while looking for loop end");
   };
   // We're trying to find the corresponding end loop command.
@@ -109,7 +109,7 @@ void Brainfuck::loopBegin() {
 void Brainfuck::loopEnd() {
   if (loopStack.empty())
     throw BrainfuckError(
-        "encountered loop end without a corresponding loop begin");
+        "Encountered loop end without a corresponding loop begin");
   assert(dataPointer < data.size());
   if (data.at(dataPointer) == 0) {
     loopStack.pop_back();
