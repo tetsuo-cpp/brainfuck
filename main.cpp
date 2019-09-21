@@ -23,6 +23,7 @@ int main(int argc, char **argv) {
   } catch (const brainfuck::BrainfuckError &error) {
     std::cerr << "BRAINFUCK: " << error.what() << ".\n";
     bf.dumpState();
+    return EXIT_FAILURE;
   }
   return EXIT_SUCCESS;
 }
